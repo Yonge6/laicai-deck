@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>你的贾维斯，已经来了</title>
+    <meta name="description" content="一个设计师，如何用 Codex 把想法变成产品，把工作变成系统。" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="deck" aria-live="polite">
+      <div class="hud" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <header class="topbar">
+        <a class="brand" href="#1" aria-label="回到封面">
+          <img src="assets/xiazi.png" alt="" />
+          <span>
+            <strong data-i18n="brandTitle">你的贾维斯，已经来了</strong>
+            <small data-i18n="brandSub">YOUR JARVIS IS HERE</small>
+          </span>
+        </a>
+        <nav id="nav" aria-label="章节导航"></nav>
+        <div class="controls">
+          <button id="langBtn" type="button" title="切换中英文">中文 / EN</button>
+          <button id="speakerBtn" type="button" title="演讲者模式">Notes</button>
+          <button id="jarvisBtn" type="button" title="贾维斯模式">JARVIS</button>
+          <button id="fullBtn" type="button" title="全屏">⛶</button>
+        </div>
+      </header>
+
+      <section class="stage">
+        <div class="copy">
+          <p id="kicker" class="kicker"></p>
+          <h1 id="headline"></h1>
+          <p id="subline" class="subline"></p>
+          <div id="body" class="body"></div>
+          <div id="links" class="links"></div>
+        </div>
+        <aside id="visual" class="visual" aria-hidden="true"></aside>
+      </section>
+
+      <aside id="speakerPanel" class="speaker-panel" aria-label="演讲者备注">
+        <div>
+          <small id="time"></small>
+          <h2 id="speakerTitle"></h2>
+          <p id="notes"></p>
+        </div>
+        <div>
+          <small>Next</small>
+          <p id="nextPreview"></p>
+        </div>
+        <div id="promptBox" class="prompt-box"></div>
+      </aside>
+
+      <footer class="footer">
+        <div class="progress"><span id="progress"></span></div>
+        <div class="hint">← → / Space / Wheel / Swipe</div>
+        <div id="counter" class="counter"></div>
+      </footer>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
