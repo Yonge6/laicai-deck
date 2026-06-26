@@ -15,6 +15,13 @@ function padPage(index: number) {
   return String(index + 1).padStart(2, "0");
 }
 
+function cleanNoteText(text: string) {
+  return text
+    .replace(/^#\s+/gm, "")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/^\[(互动|停顿|演示)\]\s*/gm, "$1：");
+}
+
 function PresenterQuickNav({
   currentIndex,
   language,
@@ -165,8 +172,8 @@ export function PresenterMode({
   const notesRef = useRef<HTMLTextAreaElement | null>(null);
   const slide = slides[currentIndex];
   const nextSlide = slides[currentIndex + 1];
-  const defaultNote = slide.notes[language] || slide.notes.zh;
-  const [noteText, setNoteText] = useState(() => localStorage.getItem(noteDraftKey(slide.id, language)) || defaultNote);
+  const defaultNote = cleanNoteText(slide.notes[language] || slide.notes.zh);
+  const [noteText, setNoteText] = useState(() => cleanNoteText(localStorage.getItem(noteDraftKey(slide.id, language)) || defaultNote));
   const sequence = sequenceForSlide(slide.id);
   const elapsed = elapsedMs(timer, now);
   const totalDurationSec = useMemo(() => slides.reduce((sum, item) => sum + item.durationSec, 0), []);
@@ -192,7 +199,7 @@ export function PresenterMode({
   }, [noteFont]);
 
   useEffect(() => {
-    setNoteText(localStorage.getItem(noteDraftKey(slide.id, language)) || defaultNote);
+    setNoteText(cleanNoteText(localStorage.getItem(noteDraftKey(slide.id, language)) || defaultNote));
     setNoteSaved(true);
   }, [defaultNote, language, slide.id]);
 
