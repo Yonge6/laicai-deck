@@ -8,14 +8,15 @@ export const afterAsset = "/demo/after.webp";
 export const casePreviewAssets: Record<string, string> = {
   websites: "/case-previews/pluto.webp",
   games: "/case-previews/catch-game.webp",
-  english: "/case-previews/quote-log.webp",
+  english: "/case-previews/english-speaking-quest.webp",
+  ads: "/case-previews/asset-sop.webp",
   booth: "/case-previews/onelaser-booth.webp",
   pluto: "/case-previews/pluto.webp",
   quoteLog: "/case-previews/quote-log.webp",
   interactive: "/case-previews/zaha.webp",
   familyGrowthTree: "/case-previews/family-growth-tree.webp",
   zaha: "/case-previews/zaha.webp",
-  systems: "/case-previews/onelaser-booth.webp",
+  systems: "/case-previews/lvp.webp",
   oneLaserBooth: "/case-previews/onelaser-booth.webp",
   worldCup: "/case-previews/world-cup.webp",
 };
