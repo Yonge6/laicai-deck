@@ -41,6 +41,7 @@ export type CaseStudy = {
   title: string;
   description: string;
   url?: string;
+  links?: { label: string; url: string }[];
   previewImage?: string;
   iframeAllowed?: boolean;
   fallbackMessage?: string;
@@ -70,7 +71,7 @@ export const caseStudies: CaseStudy[] = [
   { id: "english", title: "英语学习", description: "把每日英语输入沉淀成自动记录和复盘系统。", url: "https://yonge6.github.io/OneLaser/english-speaking-quest/#today-practice" },
   { id: "interactive", title: "互动页面", description: "把文章、知识和人物研究变成可探索页面。", url: "https://yonge6.github.io/zhaha2/" },
   { id: "booth", title: "展会方案", description: "传统设计稿变成可访问、可协作、可持续维护的线上项目资产。", url: "https://yonge6.github.io/OneLaser/august-trade-show-booth/" },
-  { id: "ads", title: "广告素材", description: "广告文案、视觉素材和投放测试进入同一条工作流。", url: "https://yonge6.github.io/OneLaser/asset-sop.html" },
+  { id: "ads", title: "广告素材", description: "广告文案、视觉素材和投放测试进入同一条工作流。", url: "https://yonge6.github.io/OneLaser/asset-sop.html", links: [{ label: "查看 SOP", url: "https://yonge6.github.io/OneLaser/asset-sop.html" }, { label: "查看 OneLaser", url: "https://yonge6.github.io/OneLaser/" }] },
   { id: "systems", title: "工作系统", description: "把重复工作整理成可交接、可检查、可持续运行的系统。", url: "https://yonge6.github.io/LVP/" },
   { id: "pluto", title: "虾子曰全球热点站", description: "每天筛选全球最值得关注的 9 件事，用短内容和海报讲清楚。", url: "https://pluto.hk" },
   { id: "quoteLog", title: "英语 Quote 自动记录", description: "自动记录英语金句，检查发布、日志、缓存和线上新鲜度。", url: "https://pluto.hk/english-quote-log/" },
@@ -111,13 +112,15 @@ export const hotspots: Hotspot[] = [
   { id: "s8-zaha", slideId: 8, x: 59, y: 15, width: 15, height: 44, label: label("扎哈互动页面"), type: "openCase", payloadId: "zaha", visibleStyle: "outline" },
   { id: "s8-worldcup", slideId: 8, x: 76, y: 18, width: 15, height: 42, label: label("世界杯比分预测"), type: "openCase", payloadId: "worldCup", visibleStyle: "outline" },
 
+  { id: "s10-onelaser-gpt", slideId: 10, x: 50, y: 14, width: 15, height: 36, label: label("OneLaser 创意策略 GPT"), type: "openLink", target: "https://docs.qq.com/pdf/DZGV4eWNuWVFpWktQ", visibleStyle: "outline" },
+
   { id: "s11-plan", slideId: 11, x: 41, y: 21, width: 18, height: 30, label: label("展位平面图"), type: "openCase", payloadId: "oneLaserBooth", visibleStyle: "outline" },
   { id: "s11-layout", slideId: 11, x: 62, y: 15, width: 18, height: 36, label: label("设备布局"), type: "openCase", payloadId: "oneLaserBooth", visibleStyle: "outline" },
   { id: "s11-phone", slideId: 11, x: 30, y: 48, width: 14, height: 26, label: label("手机预览"), type: "openCase", payloadId: "oneLaserBooth", visibleStyle: "outline" },
   { id: "s11-system", slideId: 11, x: 47, y: 55, width: 18, height: 24, label: label("在线协作系统"), type: "openCase", payloadId: "oneLaserBooth", visibleStyle: "outline" },
   { id: "s11-screen", slideId: 11, x: 70, y: 51, width: 18, height: 24, label: label("主展会方案大屏"), type: "openCase", payloadId: "oneLaserBooth", visibleStyle: "outline" },
 
-  { id: "s12-step-1", slideId: 12, x: 50, y: 9, width: 10, height: 18, label: label("竞品情报"), type: "sequence", visibleStyle: "outline" },
+  { id: "s12-step-1", slideId: 12, x: 50, y: 9, width: 10, height: 18, label: label("竞品情报"), type: "openLink", target: "https://docs.qq.com/pdf/DZGltZW5kdW54ZXF1", visibleStyle: "outline" },
   { id: "s12-step-2", slideId: 12, x: 67, y: 8, width: 10, height: 18, label: label("全球热点"), type: "sequence", visibleStyle: "outline" },
   { id: "s12-step-3", slideId: 12, x: 82, y: 12, width: 11, height: 18, label: label("产品资料"), type: "sequence", visibleStyle: "outline" },
   { id: "s12-step-4", slideId: 12, x: 88, y: 34, width: 10, height: 18, label: label("创意机会"), type: "sequence", visibleStyle: "outline" },

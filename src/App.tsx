@@ -526,6 +526,7 @@ export default function App() {
       setModal({ type: "case", caseId: hotspot.payloadId });
       post({ type: "OPEN_CASE", caseId: hotspot.payloadId });
     }
+    if (hotspot.type === "openLink" && hotspot.target) window.open(hotspot.target, "_blank", "noopener,noreferrer");
     if (hotspot.type === "sequence") {
       const sequence = sequenceForSlide(hotspot.slideId);
       const index = sequence?.steps.findIndex((item) => item.targetHotspotIds.includes(hotspot.id)) ?? -1;

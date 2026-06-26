@@ -159,7 +159,7 @@ export function InteractionOverlay({
 function CaseModal({ item, safeDemoMode, online, onClose }: { item?: CaseStudy; safeDemoMode: boolean; online: boolean; onClose: () => void }) {
   const firstButton = useRef<HTMLButtonElement | null>(null);
   const [previewReady, setPreviewReady] = useState(false);
-  const links = item?.id === "zaha" ? zahaLinks : item?.url ? [item.url] : [];
+  const links = item?.links || (item?.id === "zaha" ? zahaLinks.map((url) => ({ label: "点击查看", url })) : item?.url ? [{ label: "点击查看", url: item.url }] : []);
   const previewImage = item ? (casePreviewAssets[item.id] || item.previewImage) : undefined;
 
   useEffect(() => {
@@ -185,8 +185,8 @@ function CaseModal({ item, safeDemoMode, online, onClose }: { item?: CaseStudy; 
           {previewReady && previewImage ? <img src={assetPath(previewImage)} alt="" /> : <span>{safeDemoMode ? "安全演示模式：优先使用本地预览图。" : item?.fallbackMessage || "当前案例暂时无法载入，可在新窗口中尝试打开。"}</span>}
         </div>
         <div className="caseActions">
-          {links.length ? links.map((url) => (
-            online ? <a key={url} href={url} target="_blank" rel="noopener noreferrer">点击查看</a> : <span key={url}>当前离线</span>
+          {links.length ? links.map((link) => (
+            online ? <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</a> : <span key={link.url}>当前离线</span>
           )) : <span>正式产品链接待补充。</span>}
         </div>
       </section>
