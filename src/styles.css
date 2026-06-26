@@ -46,6 +46,18 @@ button {
   background: #000;
 }
 
+.stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 68%, rgba(95, 212, 255, 0.12), transparent 22%),
+    radial-gradient(circle at 58% 64%, rgba(255, 139, 61, 0.08), transparent 18%);
+  mix-blend-mode: screen;
+  opacity: 0.55;
+}
+
 .slideImage {
   position: absolute;
   inset: 0;
@@ -103,6 +115,40 @@ button {
   background: #5fd4ff;
   box-shadow: 0 0 0 5px rgba(95, 212, 255, 0.14), 0 0 22px rgba(95, 212, 255, 0.72);
   animation: hotspotBreath 1.8s ease-in-out infinite;
+}
+
+.hotspotDot::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border: 1px solid rgba(95, 212, 255, 0.36);
+  border-radius: inherit;
+  animation: hotspotRipple 1.8s ease-out infinite;
+}
+
+.hotspot::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(to bottom, rgba(95, 212, 255, 0.9), transparent);
+  opacity: 0;
+  transform: translate(-50%, 8px);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.hotspot:hover::after,
+.hotspot:focus-visible::after {
+  opacity: 0.8;
+  transform: translate(-50%, 12px);
+}
+
+.hotspot:hover .hotspotDot,
+.hotspot:focus-visible .hotspotDot {
+  background: #ff8b3d;
+  box-shadow: 0 0 0 7px rgba(255, 139, 61, 0.18), 0 0 30px rgba(255, 139, 61, 0.78);
 }
 
 .hotspotTip {
@@ -179,6 +225,7 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.72);
+  box-shadow: 0 0 28px rgba(95, 212, 255, 0.14), inset 0 0 24px rgba(95, 212, 255, 0.06);
   pointer-events: auto;
 }
 
@@ -200,6 +247,7 @@ button {
 
 .pollPanel button.leader {
   border-color: rgba(255, 139, 61, 0.7);
+  box-shadow: 0 0 18px rgba(255, 139, 61, 0.2);
 }
 
 .pollPanel em {
@@ -230,10 +278,11 @@ button {
   transform: translateY(-50%);
   overflow: auto;
   padding: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(95, 212, 255, 0.28);
   border-radius: 8px;
-  background: #080a0d;
+  background: linear-gradient(180deg, rgba(8, 13, 18, 0.96), rgba(5, 7, 10, 0.96));
   color: #f4f1ec;
+  box-shadow: 0 0 34px rgba(95, 212, 255, 0.18), inset 0 0 30px rgba(95, 212, 255, 0.05);
   animation: modalIn 400ms ease both;
 }
 
@@ -1009,6 +1058,17 @@ button {
   50% {
     transform: translate(-50%, -50%) scale(1.18);
     opacity: 1;
+  }
+}
+
+@keyframes hotspotRipple {
+  from {
+    opacity: 0.58;
+    transform: scale(0.55);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.45);
   }
 }
 
