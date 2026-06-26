@@ -127,17 +127,23 @@ export const hotspots: Hotspot[] = [
   { id: "s12-step-8", slideId: 12, x: 43, y: 34, width: 10, height: 18, label: label("数据反馈"), type: "sequence", visibleStyle: "outline" },
   { id: "s12-loop", slideId: 12, x: 52, y: 34, width: 13, height: 17, label: label("中央闭环"), type: "sequence", visibleStyle: "outline" },
 
-  ...["登录确认", "授权确认", "支付确认", "删除确认", "正式发布确认"].map((name, i) => ({
-    id: `s16-confirm-${i + 1}`, slideId: 16, x: 28 + i * 12, y: 67, width: 10, height: 15, label: label(name), type: "sequence" as InteractionType, visibleStyle: "outline" as const,
-  })),
+  { id: "s16-confirm-1", slideId: 16, x: 44, y: 44, width: 8, height: 30, label: label("登录确认"), type: "sequence", visibleStyle: "outline" },
+  { id: "s16-confirm-2", slideId: 16, x: 54, y: 44, width: 8, height: 30, label: label("授权确认"), type: "sequence", visibleStyle: "outline" },
+  { id: "s16-confirm-3", slideId: 16, x: 63, y: 44, width: 8, height: 30, label: label("支付确认"), type: "sequence", visibleStyle: "outline" },
+  { id: "s16-confirm-4", slideId: 16, x: 72, y: 44, width: 8, height: 30, label: label("删除确认"), type: "sequence", visibleStyle: "outline" },
+  { id: "s16-confirm-5", slideId: 16, x: 82, y: 44, width: 8, height: 30, label: label("正式发布确认"), type: "sequence", visibleStyle: "outline" },
 
-  ...["阅读项目", "输出计划", "确认文件", "执行修改", "本地预览", "反馈调整", "发布上线"].map((name, i) => ({
-    id: `s18-flow-${i + 1}`, slideId: 18, x: 31 + (i % 4) * 15, y: i < 4 ? 18 : 55, width: 12, height: 19, label: label(name), type: "sequence" as InteractionType, visibleStyle: "outline" as const,
-  })),
+  { id: "s18-flow-1", slideId: 18, x: 45, y: 12, width: 12, height: 16, label: label("阅读项目"), type: "sequence", visibleStyle: "outline" },
+  { id: "s18-flow-2", slideId: 18, x: 72, y: 13, width: 12, height: 16, label: label("输出计划"), type: "sequence", visibleStyle: "outline" },
+  { id: "s18-flow-3", slideId: 18, x: 45, y: 34, width: 12, height: 16, label: label("确认文件"), type: "sequence", visibleStyle: "outline" },
+  { id: "s18-flow-4", slideId: 18, x: 72, y: 36, width: 12, height: 16, label: label("执行修改"), type: "sequence", visibleStyle: "outline" },
+  { id: "s18-flow-5", slideId: 18, x: 40, y: 56, width: 14, height: 17, label: label("本地预览"), type: "sequence", visibleStyle: "outline" },
+  { id: "s18-flow-6", slideId: 18, x: 66, y: 57, width: 14, height: 17, label: label("反馈调整"), type: "sequence", visibleStyle: "outline" },
+  { id: "s18-flow-7", slideId: 18, x: 49, y: 74, width: 14, height: 15, label: label("发布上线"), type: "sequence", visibleStyle: "outline" },
 
-  { id: "s19-vote-a", slideId: 19, x: 9, y: 59, width: 21, height: 11, label: label("A 增加贾维斯模式"), type: "poll", target: "A", visibleStyle: "outline" },
-  { id: "s19-vote-b", slideId: 19, x: 9, y: 72, width: 21, height: 11, label: label("B 增加现场共创页面"), type: "poll", target: "B", visibleStyle: "outline" },
-  { id: "s19-vote-c", slideId: 19, x: 9, y: 85, width: 21, height: 9, label: label("C 优化 1 与 0 结束页"), type: "poll", target: "C", visibleStyle: "outline" },
+  { id: "s19-vote-a", slideId: 19, x: 4, y: 47, width: 24, height: 7, label: label("A 增加贾维斯模式"), type: "poll", target: "A", visibleStyle: "outline" },
+  { id: "s19-vote-b", slideId: 19, x: 4, y: 57, width: 24, height: 7, label: label("B 增加现场共创页面"), type: "poll", target: "B", visibleStyle: "outline" },
+  { id: "s19-vote-c", slideId: 19, x: 4, y: 67, width: 24, height: 7, label: label("C 优化 1 与 0 结束页"), type: "poll", target: "C", visibleStyle: "outline" },
 
   { id: "s20-video", slideId: 20, x: 34, y: 75, width: 14, height: 9, label: label("备用 Demo 视频"), type: "openVideo", visibleStyle: "outline" },
   { id: "s20-before-after", slideId: 20, x: 50, y: 75, width: 16, height: 9, label: label("查看修改前后"), type: "beforeAfter", visibleStyle: "outline" },
