@@ -1,4 +1,4 @@
-const CACHE = "jarvis-presentation-v4";
+const CACHE = "jarvis-presentation-v5";
 const STATIC_PATHS = [
   "",
   "slides/zh/01.webp", "slides/zh/02.webp", "slides/zh/03.webp", "slides/zh/04.webp", "slides/zh/05.webp",
@@ -19,6 +19,9 @@ const STATIC_PATHS = [
   "case-previews/pluto.webp", "case-previews/catch-game.webp", "case-previews/quote-log.webp", "case-previews/family-growth-tree.webp",
   "case-previews/zaha.webp", "case-previews/onelaser-booth.webp", "case-previews/world-cup.webp",
   "demo/before.webp", "demo/after.webp", "qr/wechat.jpg",
+  "cases/catch-the-line-game/index.html",
+  "cases/catch-the-line-game/assets/xiazi-logo.png",
+  "cases/catch-the-line-game/assets/xiazi-character.png",
 ];
 
 const scoped = (path) => new URL(path, self.registration.scope).toString();

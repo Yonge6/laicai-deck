@@ -144,22 +144,26 @@ function InteractionLayer({ rect }: { rect: ImageDisplayRect }) {
 }
 
 function QrReveal({ rect }: { rect: ImageDisplayRect }) {
+  const [open, setOpen] = useState(false);
+
   return (
-    <button
-      className="qrReveal"
-      type="button"
-      aria-label="显示微信二维码"
-      style={{
-        left: rect.x + rect.width * 0.78,
-        top: rect.y + rect.height * 0.75,
-      }}
-    >
-      <span>扫码</span>
-      <div className="qrPopup" aria-hidden="true">
-        <img src={assetPath("/qr/wechat.jpg")} alt="" />
-        <strong>扫码加我为好友</strong>
-      </div>
-    </button>
+    <>
+      <button
+        className="qrReveal"
+        type="button"
+        aria-label="显示微信二维码"
+        style={{
+          left: rect.x + rect.width * 0.86,
+          top: rect.y + rect.height * 0.78,
+        }}
+        onClick={() => setOpen(true)}
+      />
+      {open && (
+        <button className="qrPopup" type="button" aria-label="关闭微信二维码" onClick={() => setOpen(false)}>
+          <img src={assetPath("/qr/wechat.jpg")} alt="" />
+        </button>
+      )}
+    </>
   );
 }
 
@@ -739,6 +743,8 @@ export default function App() {
     );
   }
 
+  const controlsHidden = finaleActive && currentIndex === 24;
+
   return (
     <main className="deck" aria-label="来财有方演讲系统">
       <div className="stage" ref={stageRef}>
@@ -753,7 +759,7 @@ export default function App() {
           modal={modal}
           hotspotDebug={hotspotDebug}
           finaleActive={finaleActive}
-          controlsHidden={finaleActive}
+          controlsHidden={controlsHidden}
           onHotspot={handleHotspot}
           onModal={(nextModal) => {
             setModal(nextModal);
@@ -770,13 +776,13 @@ export default function App() {
       </div>
       <MagicTrail />
 
-      <div className={finaleActive ? "topControls controlsHidden" : "topControls"}>
+      <div className={controlsHidden ? "topControls controlsHidden" : "topControls"}>
         <button type="button" onClick={() => setQuickNavOpen(true)}>跳页</button>
         <button type="button" onClick={toggleFullscreen}>全屏</button>
         {safeDemoMode && <span className="safeBadge">SAFE</span>}
       </div>
 
-      <footer className={finaleActive ? "deckFooter controlsHidden" : "deckFooter"}>
+      <footer className={controlsHidden ? "deckFooter controlsHidden" : "deckFooter"}>
         <div className="progress" aria-hidden="true">
           <span style={{ width: progress }} />
         </div>
