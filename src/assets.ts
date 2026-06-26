@@ -6,10 +6,13 @@ export const beforeAsset = "/demo/before.webp";
 export const afterAsset = "/demo/after.webp";
 
 export const casePreviewAssets: Record<string, string> = {
+  websites: "/case-previews/pluto.webp",
   pluto: "/case-previews/pluto.webp",
   quoteLog: "/case-previews/quote-log.webp",
+  interactive: "/case-previews/zaha.webp",
   familyGrowthTree: "/case-previews/family-growth-tree.webp",
   zaha: "/case-previews/zaha.webp",
+  systems: "/case-previews/onelaser-booth.webp",
   oneLaserBooth: "/case-previews/onelaser-booth.webp",
   worldCup: "/case-previews/world-cup.webp",
 };

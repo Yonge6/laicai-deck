@@ -65,18 +65,18 @@ export const emptyPollState: PollState = {
 };
 
 export const caseStudies: CaseStudy[] = [
-  { id: "websites", title: "网站与内容产品", description: "从内容想法到真实网址，先让结果能被打开。", fallbackMessage: "这里聚合多个网站型成果，真实链接按具体案例进入。" },
-  { id: "games", title: "小游戏", description: "把一个轻量想法快速变成可玩的互动体验。", fallbackMessage: "正式案例链接待补充。" },
+  { id: "websites", title: "网站与内容产品", description: "从内容想法到真实网址，先让结果能被打开。", url: "https://pluto.hk" },
+  { id: "games", title: "小游戏", description: "把一个轻量想法快速变成可玩的互动体验。", url: "https://pluto.hk/catch-the-line-game/" },
   { id: "english", title: "英语学习", description: "把每日英语输入沉淀成自动记录和复盘系统。", url: "https://pluto.hk/english-quote-log/" },
   { id: "interactive", title: "互动页面", description: "把文章、知识和人物研究变成可探索页面。", url: "https://yonge6.github.io/zhaha2/" },
   { id: "booth", title: "展会方案", description: "传统设计稿变成可访问、可协作、可持续维护的线上项目资产。", url: "https://yonge6.github.io/OneLaser/august-trade-show-booth/" },
   { id: "ads", title: "广告素材", description: "广告文案、视觉素材和投放测试进入同一条工作流。", fallbackMessage: "正式案例链接待补充。" },
-  { id: "systems", title: "工作系统", description: "把重复工作整理成可交接、可检查、可持续运行的系统。", fallbackMessage: "正式案例链接待补充。" },
+  { id: "systems", title: "工作系统", description: "把重复工作整理成可交接、可检查、可持续运行的系统。", url: "https://yonge6.github.io/OneLaser/" },
   { id: "pluto", title: "虾子曰全球热点站", description: "每天筛选全球最值得关注的 9 件事，用短内容和海报讲清楚。", url: "https://pluto.hk" },
   { id: "quoteLog", title: "英语 Quote 自动记录", description: "自动记录英语金句，检查发布、日志、缓存和线上新鲜度。", url: "https://pluto.hk/english-quote-log/" },
   { id: "familyGrowthTree", title: "Family Growth Tree", description: "把家庭成长理念变成可探索的互动产品。", url: "https://yonge6.github.io/FamilyGrowthTree/" },
   { id: "zaha", title: "扎哈互动页面", description: "人物、设计和知识可以变成多入口互动页面。", url: "https://yonge6.github.io/zhaha2/" },
-  { id: "worldCup", title: "世界杯比分预测", description: "正式产品链接待补充。", fallbackMessage: "正式产品链接待补充。" },
+  { id: "worldCup", title: "世界杯比分预测", description: "用 AI 辅助分析比赛信息，生成可分享的比分预测体验。", url: "https://www.score-prophet.com/" },
   { id: "oneLaserBooth", title: "OneLaser 展会在线方案", description: "传统设计稿变成可访问、可协作、可持续维护的线上项目资产。", url: "https://yonge6.github.io/OneLaser/august-trade-show-booth/" },
 ];
 
