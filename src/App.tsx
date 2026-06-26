@@ -202,6 +202,10 @@ function MagicTrail() {
     const timers: number[] = [];
     const onPointerMove = (event: PointerEvent) => {
       if (event.pointerType === "touch") return;
+      document.documentElement.style.setProperty("--tilt-x", `${((event.clientY / window.innerHeight) - 0.5) * -6}deg`);
+      document.documentElement.style.setProperty("--tilt-y", `${((event.clientX / window.innerWidth) - 0.5) * 7}deg`);
+      document.documentElement.style.setProperty("--glow-x", `${event.clientX}px`);
+      document.documentElement.style.setProperty("--glow-y", `${event.clientY}px`);
       const now = performance.now();
       if (now - lastRef.current < 18) return;
       lastRef.current = now;
