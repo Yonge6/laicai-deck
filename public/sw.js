@@ -1,4 +1,4 @@
-const CACHE = "jarvis-presentation-v1";
+const CACHE = "jarvis-presentation-v2";
 const STATIC_PATHS = [
   "",
   "slides/zh/01.webp", "slides/zh/02.webp", "slides/zh/03.webp", "slides/zh/04.webp", "slides/zh/05.webp",
