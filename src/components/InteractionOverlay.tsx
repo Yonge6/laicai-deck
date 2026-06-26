@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { afterAsset, assetExists, beforeAsset, casePreviewAssets, videoAsset, videoPosterAsset } from "../assets";
+import { afterAsset, assetExists, assetStatus, beforeAsset, casePreviewAssets, videoAsset, videoPosterAsset } from "../assets";
 import { assetPath } from "../path";
 import type { Language } from "../data/deck";
 import {
@@ -247,7 +247,7 @@ function VideoModal({ onClose }: { onClose: () => void }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    assetExists(videoAsset).then(setReady);
+    if (assetStatus.backupVideo !== "skipped") assetExists(videoAsset).then(setReady);
   }, []);
 
   return (

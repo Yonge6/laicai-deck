@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { slides, type Language } from "../data/deck";
 import { caseStudies, pollOptions, sequenceForSlide, type PollState } from "../data/interactions";
-import { afterAsset, assetExists, beforeAsset, videoAsset } from "../assets";
+import { afterAsset, assetExists, assetStatus, beforeAsset, videoAsset } from "../assets";
 import { demoPrompts } from "../data/demoPrompts";
 import type { ModalState } from "./InteractionOverlay";
 import type { PresentationMessage } from "../presentationChannel";
@@ -185,7 +185,7 @@ export function PresenterMode({
   }, []);
 
   useEffect(() => {
-    Promise.all([assetExists(videoAsset), assetExists(beforeAsset), assetExists(afterAsset)]).then(([video, before, after]) => {
+    Promise.all([assetStatus.backupVideo === "skipped" ? Promise.resolve(false) : assetExists(videoAsset), assetExists(beforeAsset), assetExists(afterAsset)]).then(([video, before, after]) => {
       setAssetsReady({ video, beforeAfter: before && after });
     });
   }, []);

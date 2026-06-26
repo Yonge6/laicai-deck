@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { afterAsset, assetExists, beforeAsset, casePreviewAssets, videoAsset, videoPosterAsset } from "../assets";
+import { afterAsset, assetExists, assetStatus, beforeAsset, casePreviewAssets, videoAsset, videoPosterAsset } from "../assets";
 import { createPresentationChannel } from "../presentationChannel";
 
 type CheckStatus = "pass" | "warn" | "fail";
@@ -35,8 +35,8 @@ export function PreflightPage({ onEnter }: { onEnter: () => void }) {
       checkImageSet("/slides/zh", "webp"),
       checkImageSet("/slides/zh", "png"),
       checkImageSet("/slides/zh-thumbs", "webp"),
-      assetExists(videoAsset),
-      assetExists(videoPosterAsset),
+      assetStatus.backupVideo === "skipped" ? Promise.resolve(false) : assetExists(videoAsset),
+      assetStatus.backupVideo === "skipped" ? Promise.resolve(false) : assetExists(videoPosterAsset),
       assetExists(beforeAsset),
       assetExists(afterAsset),
       ...Object.values(casePreviewAssets).map(assetExists),
