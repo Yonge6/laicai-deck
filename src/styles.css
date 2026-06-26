@@ -685,6 +685,19 @@ button {
   outline: none;
 }
 
+.speakerNotesEditor {
+  width: 100%;
+  resize: none;
+  border: 0;
+  background: transparent;
+  font: inherit;
+}
+
+.saveState {
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 12px;
+}
+
 .speakerNotes h2 {
   margin: 0 0 18px;
   color: #ff8b3d;

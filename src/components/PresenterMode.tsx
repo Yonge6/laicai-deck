@@ -9,51 +9,10 @@ import { elapsedMs, formatDuration, formatSeconds, type TimerState } from "../us
 import { SlidePreview } from "./SlideImage";
 
 const noteFontKey = "jarvis-presenter.noteFont";
+const noteDraftKey = (slideId: number, language: Language) => `jarvis-presenter.notes.${language}.${slideId}`;
 
 function padPage(index: number) {
   return String(index + 1).padStart(2, "0");
-}
-
-function renderInline(text: string) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
-  return parts.map((part, index) => {
-    if (part.startsWith("**") && part.endsWith("**")) return <strong key={index}>{part.slice(2, -2)}</strong>;
-    return <span key={index}>{part}</span>;
-  });
-}
-
-function NoteLine({ line }: { line: string }) {
-  if (line.startsWith("# ")) return <h2>{line.slice(2)}</h2>;
-
-  const tag = line.match(/^\[(互动|停顿|演示)\]\s*(.*)$/);
-  if (tag) {
-    const className = tag[1] === "互动" ? "tagAction" : tag[1] === "演示" ? "tagDemo" : "tagPause";
-    return (
-      <p>
-        <span className={`noteTag ${className}`}>{tag[1]}</span>
-        {renderInline(tag[2])}
-      </p>
-    );
-  }
-
-  if (!line.trim()) return <div className="noteGap" />;
-  return <p>{renderInline(line)}</p>;
-}
-
-function SpeakerNotes({
-  text,
-  fontSize,
-}: {
-  text: string;
-  fontSize: number;
-}) {
-  return (
-    <div className="speakerNotes" tabIndex={0} style={{ fontSize }}>
-      {text.split("\n").map((line, index) => (
-        <NoteLine line={line} key={`${index}-${line}`} />
-      ))}
-    </div>
-  );
 }
 
 function PresenterQuickNav({
@@ -202,9 +161,12 @@ export function PresenterMode({
   const [noteFont, setNoteFont] = useState(() => Number(localStorage.getItem(noteFontKey) || 22));
   const [rehearsal, setRehearsal] = useState(() => readRehearsal());
   const [assetsReady, setAssetsReady] = useState({ video: false, beforeAfter: false });
-  const notesRef = useRef<HTMLDivElement | null>(null);
+  const [noteSaved, setNoteSaved] = useState(true);
+  const notesRef = useRef<HTMLTextAreaElement | null>(null);
   const slide = slides[currentIndex];
   const nextSlide = slides[currentIndex + 1];
+  const defaultNote = slide.notes[language] || slide.notes.zh;
+  const [noteText, setNoteText] = useState(() => localStorage.getItem(noteDraftKey(slide.id, language)) || defaultNote);
   const sequence = sequenceForSlide(slide.id);
   const elapsed = elapsedMs(timer, now);
   const totalDurationSec = useMemo(() => slides.reduce((sum, item) => sum + item.durationSec, 0), []);
@@ -228,6 +190,11 @@ export function PresenterMode({
   useEffect(() => {
     localStorage.setItem(noteFontKey, String(noteFont));
   }, [noteFont]);
+
+  useEffect(() => {
+    setNoteText(localStorage.getItem(noteDraftKey(slide.id, language)) || defaultNote);
+    setNoteSaved(true);
+  }, [defaultNote, language, slide.id]);
 
   useEffect(() => {
     onPost({ type: "REQUEST_STATE" });
@@ -301,12 +268,27 @@ export function PresenterMode({
           <div className="panelTitle">
             <span>当前页口播稿</span>
             <span className="fontControls">
+              <span className="saveState">{noteSaved ? "已自动保存" : "保存中"}</span>
               <button type="button" onClick={() => setNoteFont((value) => Math.max(18, value - 2))}>A-</button>
               <button type="button" onClick={() => setNoteFont((value) => Math.min(34, value + 2))}>A+</button>
             </span>
           </div>
-          <div className="speakerNotesWrap" ref={notesRef}>
-            <SpeakerNotes text={slide.notes[language] || slide.notes.zh} fontSize={noteFont} />
+          <div className="speakerNotesWrap">
+            <textarea
+              ref={notesRef}
+              className="speakerNotes speakerNotesEditor"
+              value={noteText}
+              aria-label="当前页口播稿，可编辑，自动保存"
+              spellCheck={false}
+              style={{ fontSize: noteFont }}
+              onChange={(event) => {
+                const value = event.target.value;
+                setNoteSaved(false);
+                setNoteText(value);
+                localStorage.setItem(noteDraftKey(slide.id, language), value);
+                setNoteSaved(true);
+              }}
+            />
           </div>
         </div>
         <aside className="panel infoPanel">
