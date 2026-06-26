@@ -24,6 +24,8 @@ const SLIDE_HEIGHT = 941;
 const TRANSITION_MS = 400;
 const WHEEL_LOCK_MS = 560;
 const TOUCH_THRESHOLD = 48;
+const TRAIL_MAX = 18;
+const TRAIL_LIFETIME_MS = 760;
 const storageKey = "laicai.currentIndex";
 const languageStorageKey = "laicai.language";
 const interactionStorageKey = "jarvis-presentation.interactions";
@@ -180,6 +182,59 @@ function QuickNav({
           ))}
         </div>
       </div>
+    </div>
+  );
+}
+
+type TrailPoint = {
+  id: number;
+  x: number;
+  y: number;
+  kind: "blue" | "orange";
+};
+
+function MagicTrail() {
+  const [points, setPoints] = useState<TrailPoint[]>([]);
+  const lastRef = useRef(0);
+  const idRef = useRef(0);
+
+  useEffect(() => {
+    const timers: number[] = [];
+    const onPointerMove = (event: PointerEvent) => {
+      if (event.pointerType === "touch") return;
+      const now = performance.now();
+      if (now - lastRef.current < 18) return;
+      lastRef.current = now;
+
+      const point = {
+        id: idRef.current++,
+        x: event.clientX,
+        y: event.clientY,
+        kind: idRef.current % 3 === 0 ? "orange" : "blue",
+      } satisfies TrailPoint;
+
+      setPoints((items) => [...items.slice(-TRAIL_MAX + 1), point]);
+      timers.push(window.setTimeout(() => {
+        setPoints((items) => items.filter((item) => item.id !== point.id));
+      }, TRAIL_LIFETIME_MS));
+    };
+
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    return () => {
+      window.removeEventListener("pointermove", onPointerMove);
+      timers.forEach(window.clearTimeout);
+    };
+  }, []);
+
+  return (
+    <div className="magicTrailLayer" aria-hidden="true">
+      {points.map((point) => (
+        <span
+          key={point.id}
+          className={`magicTrailPoint ${point.kind}`}
+          style={{ left: point.x, top: point.y }}
+        />
+      ))}
     </div>
   );
 }
@@ -689,6 +744,7 @@ export default function App() {
           online={online}
         />
       </div>
+      <MagicTrail />
 
       <div className={finaleActive ? "topControls controlsHidden" : "topControls"}>
         <button type="button" onClick={() => setQuickNavOpen(true)}>跳页</button>

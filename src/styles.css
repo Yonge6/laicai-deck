@@ -52,10 +52,14 @@ button {
   inset: 0;
   pointer-events: none;
   background:
+    linear-gradient(rgba(95, 212, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95, 212, 255, 0.035) 1px, transparent 1px),
     radial-gradient(circle at 50% 68%, rgba(95, 212, 255, 0.12), transparent 22%),
     radial-gradient(circle at 58% 64%, rgba(255, 139, 61, 0.08), transparent 18%);
+  background-size: 48px 48px, 48px 48px, auto, auto;
   mix-blend-mode: screen;
-  opacity: 0.55;
+  opacity: 0.72;
+  mask-image: linear-gradient(to bottom, transparent 18%, #000 38%, #000 78%, transparent 100%);
 }
 
 .slideImage {
@@ -212,6 +216,64 @@ button {
 .showHotspots .hotspot {
   border: 1px dashed rgba(95, 212, 255, 0.34);
   border-radius: 8px;
+}
+
+.magicTrailLayer {
+  position: fixed;
+  z-index: 9;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  mix-blend-mode: screen;
+}
+
+.magicTrailPoint {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  animation: magicTrailFade 760ms ease-out both;
+}
+
+.magicTrailPoint::before,
+.magicTrailPoint::after {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 42px;
+  height: 2px;
+  border-radius: 999px;
+  transform-origin: left center;
+}
+
+.magicTrailPoint::before {
+  transform: rotate(24deg);
+}
+
+.magicTrailPoint::after {
+  transform: rotate(-34deg);
+  opacity: 0.62;
+}
+
+.magicTrailPoint.blue {
+  background: radial-gradient(circle, #eaffff 0 12%, #5fd4ff 26%, transparent 68%);
+  box-shadow: 0 0 18px rgba(95, 212, 255, 0.95), 0 0 42px rgba(95, 212, 255, 0.42);
+}
+
+.magicTrailPoint.blue::before,
+.magicTrailPoint.blue::after {
+  background: linear-gradient(90deg, rgba(95, 212, 255, 0.82), transparent);
+}
+
+.magicTrailPoint.orange {
+  background: radial-gradient(circle, #fff6d7 0 12%, #ff8b3d 28%, transparent 68%);
+  box-shadow: 0 0 18px rgba(255, 139, 61, 0.95), 0 0 42px rgba(255, 139, 61, 0.42);
+}
+
+.magicTrailPoint.orange::before,
+.magicTrailPoint.orange::after {
+  background: linear-gradient(90deg, rgba(255, 139, 61, 0.82), transparent);
 }
 
 .pollPanel {
@@ -1069,6 +1131,19 @@ button {
   to {
     opacity: 0;
     transform: scale(1.45);
+  }
+}
+
+@keyframes magicTrailFade {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.45) rotate(0deg);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2.4) rotate(18deg);
+    filter: blur(2px);
   }
 }
 
