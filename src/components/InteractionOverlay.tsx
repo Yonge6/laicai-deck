@@ -5,7 +5,6 @@ import type { Language } from "../data/deck";
 import {
   caseById,
   hotspotsForSlide,
-  pollOptions,
   sequenceForSlide,
   zahaLinks,
   type CaseStudy,
@@ -74,8 +73,6 @@ export function InteractionOverlay({
   onModal,
   onStep,
   onVote,
-  onPollLock,
-  onPollReset,
   onHotspotDebug,
   onFinaleExit,
   safeDemoMode,
@@ -94,8 +91,6 @@ export function InteractionOverlay({
   onModal: (modal: ModalState) => void;
   onStep: (step: number) => void;
   onVote: (option: "A" | "B" | "C") => void;
-  onPollLock: (locked: boolean) => void;
-  onPollReset: () => void;
   onHotspotDebug: (enabled: boolean) => void;
   onFinaleExit: () => void;
   safeDemoMode: boolean;
@@ -138,7 +133,6 @@ export function InteractionOverlay({
             </span>
           </button>
         ))}
-        {slideId === 19 && <PollPanel poll={poll} onVote={onVote} onLock={onPollLock} onReset={onPollReset} />}
         {slideId === 25 && finaleActive && (
           <div className="finaleOverlay">
             <div className="finaleGlow" />
@@ -159,46 +153,6 @@ export function InteractionOverlay({
       {modal?.type === "beforeAfter" && <BeforeAfterModal onClose={() => onModal(null)} />}
       {modal?.type === "video" && <VideoModal onClose={() => onModal(null)} />}
     </>
-  );
-}
-
-function PollPanel({
-  poll,
-  onVote,
-  onLock,
-  onReset,
-}: {
-  poll: PollState;
-  onVote: (option: "A" | "B" | "C") => void;
-  onLock: (locked: boolean) => void;
-  onReset: () => void;
-}) {
-  const total = Math.max(1, poll.counts.A + poll.counts.B + poll.counts.C);
-  const leader = pollOptions.reduce((best, item) => (poll.counts[item.id] > poll.counts[best] ? item.id : best), "A" as "A" | "B" | "C");
-
-  return (
-    <aside className="pollPanel">
-      <strong>{poll.locked ? "最终结果" : "现场选择"}</strong>
-      {pollOptions.map((option) => {
-        const percent = Math.round((poll.counts[option.id] / total) * 100);
-        return (
-          <button
-            type="button"
-            key={option.id}
-            className={leader === option.id ? "leader" : ""}
-            disabled={poll.locked}
-            onClick={() => onVote(option.id)}
-          >
-            <span>{option.id} {option.title}</span>
-            <em>{poll.counts[option.id]} 票 · {percent}%</em>
-          </button>
-        );
-      })}
-      <div>
-        <button type="button" onClick={() => onLock(!poll.locked)}>{poll.locked ? "解锁" : "锁定"}</button>
-        <button type="button" onClick={onReset}>重置</button>
-      </div>
-    </aside>
   );
 }
 

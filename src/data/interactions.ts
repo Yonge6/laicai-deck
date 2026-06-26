@@ -107,7 +107,7 @@ export const hotspots: Hotspot[] = [
   { id: "s7-flow-4", slideId: 7, x: 69, y: 66, width: 8, height: 9, label: label("缓存排查"), type: "sequence", visibleStyle: "outline" },
   { id: "s7-flow-5", slideId: 7, x: 80, y: 66, width: 8, height: 9, label: label("线上验证"), type: "sequence", visibleStyle: "outline" },
 
-  { id: "s8-family", slideId: 8, x: 41, y: 19, width: 15, height: 39, label: label("Family Growth Tree"), type: "openCase", payloadId: "familyGrowthTree", visibleStyle: "outline" },
+  { id: "s8-family", slideId: 8, x: 50, y: 18, width: 14, height: 40, label: label("Family Growth Tree"), type: "openCase", payloadId: "familyGrowthTree", visibleStyle: "outline" },
   { id: "s8-zaha", slideId: 8, x: 59, y: 15, width: 15, height: 44, label: label("扎哈互动页面"), type: "openCase", payloadId: "zaha", visibleStyle: "outline" },
   { id: "s8-worldcup", slideId: 8, x: 76, y: 18, width: 15, height: 42, label: label("世界杯比分预测"), type: "openCase", payloadId: "worldCup", visibleStyle: "outline" },
 
@@ -117,9 +117,14 @@ export const hotspots: Hotspot[] = [
   { id: "s11-system", slideId: 11, x: 47, y: 55, width: 18, height: 24, label: label("在线协作系统"), type: "openCase", payloadId: "oneLaserBooth", visibleStyle: "outline" },
   { id: "s11-screen", slideId: 11, x: 70, y: 51, width: 18, height: 24, label: label("主展会方案大屏"), type: "openCase", payloadId: "oneLaserBooth", visibleStyle: "outline" },
 
-  ...["竞品情报", "全球热点", "产品资料", "创意机会", "广告 Brief", "文案视觉", "投放测试", "数据反馈"].map((name, i) => ({
-    id: `s12-step-${i + 1}`, slideId: 12, x: 32 + (i % 4) * 14, y: i < 4 ? 14 : 55, width: 11, height: 18, label: label(name), type: "sequence" as InteractionType, visibleStyle: "outline" as const,
-  })),
+  { id: "s12-step-1", slideId: 12, x: 50, y: 9, width: 10, height: 18, label: label("竞品情报"), type: "sequence", visibleStyle: "outline" },
+  { id: "s12-step-2", slideId: 12, x: 67, y: 8, width: 10, height: 18, label: label("全球热点"), type: "sequence", visibleStyle: "outline" },
+  { id: "s12-step-3", slideId: 12, x: 82, y: 12, width: 11, height: 18, label: label("产品资料"), type: "sequence", visibleStyle: "outline" },
+  { id: "s12-step-4", slideId: 12, x: 88, y: 34, width: 10, height: 18, label: label("创意机会"), type: "sequence", visibleStyle: "outline" },
+  { id: "s12-step-5", slideId: 12, x: 85, y: 56, width: 11, height: 18, label: label("广告 Brief"), type: "sequence", visibleStyle: "outline" },
+  { id: "s12-step-6", slideId: 12, x: 63, y: 61, width: 11, height: 18, label: label("文案视觉"), type: "sequence", visibleStyle: "outline" },
+  { id: "s12-step-7", slideId: 12, x: 45, y: 56, width: 11, height: 18, label: label("投放测试"), type: "sequence", visibleStyle: "outline" },
+  { id: "s12-step-8", slideId: 12, x: 43, y: 34, width: 10, height: 18, label: label("数据反馈"), type: "sequence", visibleStyle: "outline" },
   { id: "s12-loop", slideId: 12, x: 52, y: 34, width: 13, height: 17, label: label("中央闭环"), type: "sequence", visibleStyle: "outline" },
 
   ...["登录确认", "授权确认", "支付确认", "删除确认", "正式发布确认"].map((name, i) => ({
@@ -137,9 +142,11 @@ export const hotspots: Hotspot[] = [
   { id: "s20-video", slideId: 20, x: 34, y: 75, width: 14, height: 9, label: label("备用 Demo 视频"), type: "openVideo", visibleStyle: "outline" },
   { id: "s20-before-after", slideId: 20, x: 50, y: 75, width: 16, height: 9, label: label("查看修改前后"), type: "beforeAfter", visibleStyle: "outline" },
 
-  ...["1", "Codex", "Claude Code", "WorkBuddy", "AI Agent"].map((name, i) => ({
-    id: `s24-onezero-${i + 1}`, slideId: 24, x: i === 0 ? 44 : 54 + (i - 1) * 7.5, y: 18, width: i === 0 ? 10 : 7, height: 57, label: label(name), type: "sequence" as InteractionType, visibleStyle: "outline" as const,
-  })),
+  { id: "s24-onezero-1", slideId: 24, x: 53, y: 17, width: 9, height: 50, label: label("1"), type: "sequence", visibleStyle: "outline" },
+  { id: "s24-onezero-2", slideId: 24, x: 67, y: 28, width: 8, height: 33, label: label("Codex"), type: "sequence", visibleStyle: "outline" },
+  { id: "s24-onezero-3", slideId: 24, x: 75, y: 31, width: 7, height: 29, label: label("Claude Code"), type: "sequence", visibleStyle: "outline" },
+  { id: "s24-onezero-4", slideId: 24, x: 82, y: 34, width: 7, height: 27, label: label("WorkBuddy"), type: "sequence", visibleStyle: "outline" },
+  { id: "s24-onezero-5", slideId: 24, x: 88, y: 36, width: 7, height: 25, label: label("AI Agent"), type: "sequence", visibleStyle: "outline" },
 
   { id: "s25-finale", slideId: 25, x: 62, y: 24, width: 23, height: 48, label: label("最终定格"), type: "finale", visibleStyle: "none" },
 ];

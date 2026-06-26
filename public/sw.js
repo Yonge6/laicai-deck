@@ -1,4 +1,4 @@
-const CACHE = "jarvis-presentation-v2";
+const CACHE = "jarvis-presentation-v4";
 const STATIC_PATHS = [
   "",
   "slides/zh/01.webp", "slides/zh/02.webp", "slides/zh/03.webp", "slides/zh/04.webp", "slides/zh/05.webp",
@@ -16,9 +16,9 @@ const STATIC_PATHS = [
   "slides/zh-thumbs/11.webp", "slides/zh-thumbs/12.webp", "slides/zh-thumbs/13.webp", "slides/zh-thumbs/14.webp", "slides/zh-thumbs/15.webp",
   "slides/zh-thumbs/16.webp", "slides/zh-thumbs/17.webp", "slides/zh-thumbs/18.webp", "slides/zh-thumbs/19.webp", "slides/zh-thumbs/20.webp",
   "slides/zh-thumbs/21.webp", "slides/zh-thumbs/22.webp", "slides/zh-thumbs/23.webp", "slides/zh-thumbs/24.webp", "slides/zh-thumbs/25.webp",
-  "case-previews/pluto.webp", "case-previews/quote-log.webp", "case-previews/family-growth-tree.webp",
+  "case-previews/pluto.webp", "case-previews/catch-game.webp", "case-previews/quote-log.webp", "case-previews/family-growth-tree.webp",
   "case-previews/zaha.webp", "case-previews/onelaser-booth.webp", "case-previews/world-cup.webp",
-  "demo/before.webp", "demo/after.webp",
+  "demo/before.webp", "demo/after.webp", "qr/wechat.jpg",
 ];
 
 const scoped = (path) => new URL(path, self.registration.scope).toString();

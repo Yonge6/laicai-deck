@@ -286,48 +286,6 @@ button {
   background: linear-gradient(90deg, rgba(255, 139, 61, 0.82), transparent);
 }
 
-.pollPanel {
-  position: absolute;
-  left: 5%;
-  bottom: 5%;
-  width: min(34%, 380px);
-  display: grid;
-  gap: 8px;
-  padding: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.72);
-  box-shadow: 0 0 28px rgba(95, 212, 255, 0.14), inset 0 0 24px rgba(95, 212, 255, 0.06);
-  pointer-events: auto;
-}
-
-.pollPanel strong {
-  color: #ff8b3d;
-}
-
-.pollPanel button {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 6px;
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
-  cursor: pointer;
-}
-
-.pollPanel button.leader {
-  border-color: rgba(255, 139, 61, 0.7);
-  box-shadow: 0 0 18px rgba(255, 139, 61, 0.2);
-}
-
-.pollPanel em {
-  color: #5fd4ff;
-  font-style: normal;
-  white-space: nowrap;
-}
-
 .modalShell {
   position: fixed;
   z-index: 60;
@@ -494,6 +452,65 @@ button {
   padding: 8px 10px;
   background: rgba(0, 0, 0, 0.6);
   color: #fff;
+}
+
+.qrReveal {
+  position: absolute;
+  z-index: 12;
+  width: 58px;
+  height: 58px;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255, 139, 61, 0.62);
+  border-radius: 999px;
+  background: rgba(8, 16, 24, 0.72);
+  color: #fff4dc;
+  cursor: pointer;
+  box-shadow: 0 0 22px rgba(255, 139, 61, 0.34), inset 0 0 18px rgba(95, 212, 255, 0.12);
+  animation: qrPulse 1.8s ease-in-out infinite;
+}
+
+.qrReveal span {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.qrPopup {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  gap: 14px;
+  padding: 28px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(95, 212, 255, 0.24), transparent 28%),
+    rgba(0, 0, 0, 0.78);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.94);
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.qrPopup img {
+  width: min(72vh, 560px);
+  max-width: 82vw;
+  border: 12px solid #fff;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 34px 100px rgba(0, 0, 0, 0.72), 0 0 70px rgba(95, 212, 255, 0.42);
+}
+
+.qrPopup strong {
+  padding: 8px 16px;
+  border: 1px solid rgba(95, 212, 255, 0.46);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.62);
+  color: #fff;
+}
+
+.qrReveal:hover .qrPopup,
+.qrReveal:focus-visible .qrPopup {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .controlsHidden {
@@ -1237,6 +1254,11 @@ button {
   }
 }
 
+@keyframes qrPulse {
+  0%, 100% { box-shadow: 0 0 18px rgba(255, 139, 61, 0.28), inset 0 0 18px rgba(95, 212, 255, 0.12); }
+  50% { box-shadow: 0 0 34px rgba(255, 139, 61, 0.5), 0 0 28px rgba(95, 212, 255, 0.24), inset 0 0 22px rgba(95, 212, 255, 0.18); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1299,9 +1321,6 @@ button {
     width: calc(100vw - 24px);
   }
 
-  .pollPanel {
-    width: 88%;
-  }
 }
 
 .safeBadge {

@@ -7,6 +7,7 @@ import { SlideImage } from "./components/SlideImage";
 import { slides, type Language } from "./data/deck";
 import { emptyPollState, sequenceForSlide, type Hotspot, type PollState } from "./data/interactions";
 import { createPresentationChannel, type PresentationMessage } from "./presentationChannel";
+import { assetPath } from "./path";
 import {
   applyTimerSnapshot,
   getTimerSnapshot,
@@ -139,6 +140,26 @@ function InteractionLayer({ rect }: { rect: ImageDisplayRect }) {
         height: rect.height,
       }}
     />
+  );
+}
+
+function QrReveal({ rect }: { rect: ImageDisplayRect }) {
+  return (
+    <button
+      className="qrReveal"
+      type="button"
+      aria-label="显示微信二维码"
+      style={{
+        left: rect.x + rect.width * 0.78,
+        top: rect.y + rect.height * 0.75,
+      }}
+    >
+      <span>扫码</span>
+      <div className="qrPopup" aria-hidden="true">
+        <img src={assetPath("/qr/wechat.jpg")} alt="" />
+        <strong>扫码加我为好友</strong>
+      </div>
+    </button>
   );
 }
 
@@ -740,13 +761,12 @@ export default function App() {
           }}
           onStep={(step) => setSlideStep(currentIndex + 1, step)}
           onVote={vote}
-          onPollLock={setPollLocked}
-          onPollReset={resetPoll}
           onHotspotDebug={setHotspotDebug}
           onFinaleExit={() => setFinaleActive(false)}
           safeDemoMode={safeDemoMode}
           online={online}
         />
+        {currentIndex === 24 && <QrReveal rect={rect} />}
       </div>
       <MagicTrail />
 
