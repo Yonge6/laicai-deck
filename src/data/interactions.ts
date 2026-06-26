@@ -66,7 +66,7 @@ export const emptyPollState: PollState = {
 };
 
 export const caseStudies: CaseStudy[] = [
-  { id: "websites", title: "网站与内容产品", description: "从内容想法到真实网址，先让结果能被打开。", url: "https://pluto.hk" },
+  { id: "websites", title: "网站与内容产品", description: "从内容想法到真实网址，先让结果能被打开。", url: "https://yonge6.github.io/Elian/" },
   { id: "games", title: "小游戏", description: "把一个轻量想法快速变成可玩的互动体验。", url: "./cases/catch-the-line-game/" },
   { id: "english", title: "英语学习", description: "把每日英语输入沉淀成自动记录和复盘系统。", url: "https://yonge6.github.io/OneLaser/english-speaking-quest/#today-practice" },
   { id: "interactive", title: "互动页面", description: "把文章、知识和人物研究变成可探索页面。", url: "https://yonge6.github.io/zhaha2/" },
