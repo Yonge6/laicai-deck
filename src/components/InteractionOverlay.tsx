@@ -50,6 +50,16 @@ function hotspotConfig(hotspot: Hotspot) {
   );
 }
 
+function hotspotDetail(hotspot: Hotspot, language: Language) {
+  if (hotspot.type === "openCase") return caseById(hotspot.payloadId)?.description || "点击查看案例详情";
+  if (hotspot.type === "poll") return "点击选择这个现场 Demo";
+  if (hotspot.type === "sequence") return "点击或按 Enter 推进当前步骤";
+  if (hotspot.type === "beforeAfter") return "点击查看修改前后对比";
+  if (hotspot.type === "openVideo") return "点击打开备用演示入口";
+  if (hotspot.type === "finale") return "点击进入最终定格";
+  return hotspot.label[language] || hotspot.label.zh;
+}
+
 export function InteractionOverlay({
   slideId,
   language,
@@ -93,7 +103,6 @@ export function InteractionOverlay({
 }) {
   const hotspots = hotspotsForSlide(slideId);
   const sequence = sequenceForSlide(slideId);
-  const [showHints, setShowHints] = useState(false);
   const activeIds = new Set(sequence?.steps[Math.max(0, step - 1)]?.targetHotspotIds || []);
   const doneIds = new Set(sequence?.steps.slice(0, Math.max(0, step - 1)).flatMap((item) => item.targetHotspotIds) || []);
 
@@ -102,12 +111,10 @@ export function InteractionOverlay({
       <div
         className={[
           "hotspotLayer",
-          showHints || hotspotDebug ? "showHotspots" : "",
+          hotspotDebug ? "showHotspots" : "",
           controlsHidden ? "controlsHidden" : "",
         ].join(" ")}
         style={{ left: rect.x, top: rect.y, width: rect.width, height: rect.height }}
-        onMouseEnter={() => setShowHints(true)}
-        onMouseLeave={() => setShowHints(false)}
       >
         {hotspots.map((hotspot) => (
           <button
@@ -124,7 +131,11 @@ export function InteractionOverlay({
             aria-label={hotspot.label[language] || hotspot.label.zh}
             onClick={() => onHotspot(hotspot)}
           >
-            <span>{hotspot.label[language] || hotspot.label.zh}</span>
+            <span className="hotspotDot" aria-hidden="true" />
+            <span className="hotspotTip">
+              <strong>{hotspot.label[language] || hotspot.label.zh}</strong>
+              <em>{hotspotDetail(hotspot, language)}</em>
+            </span>
           </button>
         ))}
         {slideId === 19 && <PollPanel poll={poll} onVote={onVote} onLock={onPollLock} onReset={onPollReset} />}

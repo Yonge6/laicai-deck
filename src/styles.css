@@ -85,58 +85,87 @@ button {
 .hotspot {
   position: absolute;
   border: 1px solid transparent;
-  border-radius: 8px;
   background: transparent;
   color: transparent;
   pointer-events: auto;
   cursor: pointer;
-  transition: border-color 380ms ease, box-shadow 380ms ease, background 380ms ease, opacity 380ms ease;
+  overflow: visible;
 }
 
-.hotspot span {
+.hotspotDot {
   position: absolute;
-  left: 8px;
-  bottom: 6px;
-  opacity: 0;
-  padding: 3px 6px;
+  left: 50%;
+  top: 50%;
+  width: 13px;
+  height: 13px;
+  transform: translate(-50%, -50%);
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.62);
-  color: rgba(255, 255, 255, 0.86);
+  background: #5fd4ff;
+  box-shadow: 0 0 0 5px rgba(95, 212, 255, 0.14), 0 0 22px rgba(95, 212, 255, 0.72);
+  animation: hotspotBreath 1.8s ease-in-out infinite;
+}
+
+.hotspotTip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(50% + 16px);
+  z-index: 2;
+  display: grid;
+  gap: 4px;
+  width: max-content;
+  max-width: min(260px, 32vw);
+  padding: 9px 11px;
+  border: 1px solid rgba(95, 212, 255, 0.38);
+  border-radius: 8px;
+  background: rgba(2, 8, 12, 0.9);
+  color: #f7fbff;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.44), 0 0 22px rgba(95, 212, 255, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 6px);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.hotspotTip strong {
+  color: #5fd4ff;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.hotspotTip em {
+  color: rgba(255, 255, 255, 0.76);
   font-size: 12px;
-  transition: opacity 260ms ease;
+  font-style: normal;
+  line-height: 1.35;
 }
 
-.showHotspots .hotspot,
-.hotspot:focus-visible,
-.hotspot.active,
-.hotspot.done,
-.hotspot.selected {
-  border-color: rgba(95, 212, 255, 0.62);
-  box-shadow: 0 0 18px rgba(95, 212, 255, 0.28);
-}
-
-.showHotspots .hotspot span,
-.hotspot:focus-visible span {
+.hotspot:hover .hotspotTip,
+.hotspot:focus-visible .hotspotTip {
   opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .hotspot.active {
-  border-color: rgba(255, 139, 61, 0.92);
-  box-shadow: 0 0 24px rgba(255, 139, 61, 0.46);
+  color: transparent;
 }
 
-.hotspot.done {
-  border-color: rgba(95, 212, 255, 0.32);
-  box-shadow: 0 0 14px rgba(95, 212, 255, 0.18);
+.hotspot.active .hotspotDot {
+  background: #ff8b3d;
+  box-shadow: 0 0 0 6px rgba(255, 139, 61, 0.18), 0 0 26px rgba(255, 139, 61, 0.72);
 }
 
-.hotspot.selected {
-  border-color: rgba(61, 220, 132, 0.8);
-  box-shadow: 0 0 18px rgba(61, 220, 132, 0.28);
+.hotspot.done .hotspotDot {
+  opacity: 0.58;
 }
 
-.style-pulse.active {
-  animation: calmPulse 1.6s ease-in-out infinite;
+.hotspot.selected .hotspotDot {
+  background: #3ddc84;
+  box-shadow: 0 0 0 6px rgba(61, 220, 132, 0.18), 0 0 24px rgba(61, 220, 132, 0.7);
+}
+
+.showHotspots .hotspot {
+  border: 1px dashed rgba(95, 212, 255, 0.34);
+  border-radius: 8px;
 }
 
 .pollPanel {
@@ -970,6 +999,17 @@ button {
 @keyframes calmPulse {
   0%, 100% { box-shadow: 0 0 12px rgba(255, 139, 61, 0.22); }
   50% { box-shadow: 0 0 28px rgba(255, 139, 61, 0.42); }
+}
+
+@keyframes hotspotBreath {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0.72;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.18);
+    opacity: 1;
+  }
 }
 
 @keyframes modalIn {
