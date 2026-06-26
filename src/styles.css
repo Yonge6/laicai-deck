@@ -238,11 +238,11 @@ button {
 
 .magicTrailPoint {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 12px;
+  height: 12px;
   border-radius: 999px;
   transform: translate(-50%, -50%);
-  animation: magicTrailFade 760ms ease-out both;
+  animation: magicTrailFade 520ms ease-out both;
 }
 
 .magicTrailPoint::before,
@@ -250,25 +250,25 @@ button {
   content: "";
   position: absolute;
   inset: 50% auto auto 50%;
-  width: 92px;
-  height: 4px;
+  width: 34px;
+  height: 2px;
   border-radius: 999px;
   transform-origin: left center;
 }
 
 .magicTrailPoint::before {
-  transform: translateX(-94px) rotate(15deg);
+  transform: translateX(-36px) rotate(12deg);
 }
 
 .magicTrailPoint::after {
-  width: 58px;
-  transform: translateX(-58px) rotate(-18deg);
-  opacity: 0.7;
+  width: 22px;
+  transform: translateX(-24px) rotate(-22deg);
+  opacity: 0.45;
 }
 
 .magicTrailPoint.blue {
   background: radial-gradient(circle, #eaffff 0 12%, #5fd4ff 26%, transparent 68%);
-  box-shadow: 0 0 18px rgba(95, 212, 255, 0.95), 0 0 42px rgba(95, 212, 255, 0.42);
+  box-shadow: 0 0 10px rgba(95, 212, 255, 0.72), 0 0 22px rgba(95, 212, 255, 0.24);
 }
 
 .magicTrailPoint.blue::before,
@@ -278,7 +278,7 @@ button {
 
 .magicTrailPoint.orange {
   background: radial-gradient(circle, #fff6d7 0 12%, #ff8b3d 28%, transparent 68%);
-  box-shadow: 0 0 18px rgba(255, 139, 61, 0.95), 0 0 42px rgba(255, 139, 61, 0.42);
+  box-shadow: 0 0 10px rgba(255, 139, 61, 0.72), 0 0 22px rgba(255, 139, 61, 0.24);
 }
 
 .magicTrailPoint.orange::before,
@@ -338,7 +338,10 @@ button {
   position: absolute;
   inset: 0;
   border: 0;
-  background: rgba(0, 0, 0, 0.68);
+  background:
+    radial-gradient(circle at 62% 48%, rgba(95, 212, 255, 0.18), transparent 28%),
+    rgba(0, 0, 0, 0.76);
+  backdrop-filter: blur(3px);
 }
 
 .caseModal {
@@ -349,13 +352,28 @@ button {
   max-height: 82vh;
   transform: translateY(-50%);
   overflow: auto;
-  padding: 22px;
-  border: 1px solid rgba(95, 212, 255, 0.28);
-  border-radius: 8px;
-  background: linear-gradient(180deg, rgba(8, 13, 18, 0.96), rgba(5, 7, 10, 0.96));
+  padding: 24px;
+  border: 1px solid rgba(95, 212, 255, 0.48);
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(95, 212, 255, 0.12), transparent 22%),
+    linear-gradient(180deg, rgba(9, 18, 26, 0.98), rgba(3, 6, 10, 0.98));
   color: #f4f1ec;
-  box-shadow: 0 0 34px rgba(95, 212, 255, 0.18), inset 0 0 30px rgba(95, 212, 255, 0.05);
+  box-shadow:
+    0 34px 80px rgba(0, 0, 0, 0.72),
+    0 0 46px rgba(95, 212, 255, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 0 42px rgba(95, 212, 255, 0.08);
   animation: modalIn 400ms ease both;
+}
+
+.caseModal::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(255, 139, 61, 0.18);
+  border-radius: 9px;
+  pointer-events: none;
 }
 
 .caseModal h2 {
@@ -371,12 +389,13 @@ button {
 
 .modalClose {
   float: right;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(95, 212, 255, 0.36);
   border-radius: 6px;
   padding: 7px 9px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(95, 212, 255, 0.12);
   color: #fff;
   cursor: pointer;
+  box-shadow: 0 0 18px rgba(95, 212, 255, 0.16);
 }
 
 .casePreview {
@@ -384,17 +403,20 @@ button {
   display: grid;
   place-items: center;
   margin: 18px 0;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  background: #000;
+  border: 1px solid rgba(95, 212, 255, 0.28);
+  border-radius: 10px;
+  background: linear-gradient(180deg, #020508, #000);
   color: rgba(255, 255, 255, 0.6);
   text-align: center;
+  box-shadow: inset 0 0 26px rgba(95, 212, 255, 0.08), 0 16px 36px rgba(0, 0, 0, 0.42);
 }
 
 .casePreview img {
   max-width: 100%;
   max-height: 360px;
   object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.48);
 }
 
 .caseActions {
@@ -404,12 +426,13 @@ button {
 }
 
 .caseActions a {
-  border: 1px solid rgba(95, 212, 255, 0.38);
+  border: 1px solid rgba(95, 212, 255, 0.58);
   border-radius: 6px;
   padding: 9px 12px;
-  background: rgba(95, 212, 255, 0.08);
+  background: linear-gradient(180deg, rgba(95, 212, 255, 0.2), rgba(95, 212, 255, 0.08));
   color: #fff;
   text-decoration: none;
+  box-shadow: 0 0 20px rgba(95, 212, 255, 0.16);
 }
 
 .beforeAfterGrid {
@@ -422,9 +445,10 @@ button {
   min-height: 260px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  background: #000;
+  border: 1px solid rgba(95, 212, 255, 0.24);
+  border-radius: 10px;
+  background: linear-gradient(180deg, #020508, #000);
+  box-shadow: inset 0 0 26px rgba(95, 212, 255, 0.08);
 }
 
 .finaleOverlay {
@@ -600,7 +624,10 @@ button {
   position: absolute;
   inset: 0;
   border: 0;
-  background: rgba(0, 0, 0, 0.78);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(95, 212, 255, 0.16), transparent 32%),
+    rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(3px);
   cursor: default;
 }
 
@@ -613,9 +640,16 @@ button {
   max-width: 1180px;
   margin: auto;
   padding: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 8px;
-  background: #050505;
+  border: 1px solid rgba(95, 212, 255, 0.42);
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(95, 212, 255, 0.12), transparent 24%),
+    linear-gradient(180deg, rgba(9, 18, 26, 0.98), rgba(3, 6, 10, 0.98));
+  box-shadow:
+    0 34px 80px rgba(0, 0, 0, 0.74),
+    0 0 46px rgba(95, 212, 255, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 0 42px rgba(95, 212, 255, 0.08);
 }
 
 .quickNavHeader {
@@ -1146,14 +1180,14 @@ button {
 
 @keyframes magicTrailFade {
   0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+    opacity: 0.82;
+    transform: translate(-50%, -50%) scale(0.65) rotate(0deg);
     filter: blur(0);
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(2.1) rotate(8deg);
-    filter: blur(3px);
+    transform: translate(-50%, -50%) scale(1.55) rotate(8deg);
+    filter: blur(1.5px);
   }
 }
 
