@@ -89,13 +89,13 @@ export const zahaLinks = [
 const label = (zh: string): LocalizedText => ({ zh, en: "" });
 
 export const hotspots: Hotspot[] = [
-  { id: "s5-websites", slideId: 5, x: 7, y: 72, width: 11, height: 9, label: label("网站"), type: "openCase", payloadId: "websites", visibleStyle: "outline" },
-  { id: "s5-games", slideId: 5, x: 19, y: 72, width: 11, height: 9, label: label("小游戏"), type: "openCase", payloadId: "games", visibleStyle: "outline" },
-  { id: "s5-english", slideId: 5, x: 31, y: 72, width: 11, height: 9, label: label("英语学习"), type: "openCase", payloadId: "english", visibleStyle: "outline" },
-  { id: "s5-interactive", slideId: 5, x: 43, y: 72, width: 11, height: 9, label: label("互动页面"), type: "openCase", payloadId: "interactive", visibleStyle: "outline" },
-  { id: "s5-booth", slideId: 5, x: 55, y: 72, width: 11, height: 9, label: label("展会方案"), type: "openCase", payloadId: "booth", visibleStyle: "outline" },
-  { id: "s5-ads", slideId: 5, x: 67, y: 72, width: 11, height: 9, label: label("广告素材"), type: "openCase", payloadId: "ads", visibleStyle: "outline" },
-  { id: "s5-systems", slideId: 5, x: 79, y: 72, width: 11, height: 9, label: label("工作系统"), type: "openCase", payloadId: "systems", visibleStyle: "outline" },
+  { id: "s5-websites", slideId: 5, x: 51, y: 9, width: 8, height: 6, label: label("网站"), type: "openCase", payloadId: "websites", visibleStyle: "outline" },
+  { id: "s5-games", slideId: 5, x: 65, y: 7, width: 8, height: 6, label: label("小游戏"), type: "openCase", payloadId: "games", visibleStyle: "outline" },
+  { id: "s5-english", slideId: 5, x: 81, y: 9, width: 8, height: 6, label: label("英语学习"), type: "openCase", payloadId: "english", visibleStyle: "outline" },
+  { id: "s5-interactive", slideId: 5, x: 39, y: 63, width: 8, height: 6, label: label("互动页面"), type: "openCase", payloadId: "interactive", visibleStyle: "outline" },
+  { id: "s5-booth", slideId: 5, x: 50, y: 68, width: 8, height: 6, label: label("展会方案"), type: "openCase", payloadId: "booth", visibleStyle: "outline" },
+  { id: "s5-ads", slideId: 5, x: 65, y: 72, width: 8, height: 6, label: label("广告素材"), type: "openCase", payloadId: "ads", visibleStyle: "outline" },
+  { id: "s5-systems", slideId: 5, x: 82, y: 72, width: 8, height: 6, label: label("工作系统"), type: "openCase", payloadId: "systems", visibleStyle: "outline" },
 
   { id: "s6-phone", slideId: 6, x: 56, y: 20, width: 19, height: 54, label: label("打开虾子曰"), type: "openCase", payloadId: "pluto", visibleStyle: "pulse" },
   { id: "s6-pluto-text", slideId: 6, x: 8, y: 73, width: 20, height: 7, label: label("pluto.hk"), type: "openCase", payloadId: "pluto", visibleStyle: "outline" },
