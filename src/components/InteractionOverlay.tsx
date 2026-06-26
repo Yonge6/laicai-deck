@@ -232,7 +232,7 @@ function CaseModal({ item, safeDemoMode, online, onClose }: { item?: CaseStudy; 
         </div>
         <div className="caseActions">
           {links.length ? links.map((url) => (
-            online ? <a key={url} href={url} target="_blank" rel="noopener noreferrer">打开真实产品</a> : <span key={url}>当前离线</span>
+            online ? <a key={url} href={url} target="_blank" rel="noopener noreferrer">点击查看</a> : <span key={url}>当前离线</span>
           )) : <span>正式产品链接待补充。</span>}
         </div>
       </section>
