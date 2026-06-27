@@ -67,7 +67,7 @@ export const emptyPollState: PollState = {
 
 export const caseStudies: CaseStudy[] = [
   { id: "websites", title: "网站与内容产品", description: "从内容想法到真实网址，先让结果能被打开。", url: "https://yonge6.github.io/Elian/" },
-  { id: "games", title: "小游戏", description: "把一个轻量想法快速变成可玩的互动体验。", url: "https://yonge6.github.io/xiazi-echo-realm-showcase/", links: [{ label: "查看 Showcase", url: "https://yonge6.github.io/xiazi-echo-realm-showcase/" }, { label: "点击查看", url: "./cases/catch-the-line-game/" }, { label: "查看 VileSaint", url: "https://vilesaint.com/" }] },
+  { id: "games", title: "小游戏", description: "把一个轻量想法快速变成可玩的互动体验。", url: "https://yonge6.github.io/xiazi-echo-realm-showcase/", links: [{ label: "查看 Showcase", url: "https://yonge6.github.io/xiazi-echo-realm-showcase/" }, { label: "点击查看", url: "./cases/catch-the-line-game/" }, { label: "查看 GitHub", url: "https://github.com/Yonge6/vilesaint" }] },
   { id: "english", title: "英语学习", description: "把每日英语输入沉淀成自动记录和复盘系统。", url: "https://yonge6.github.io/OneLaser/english-speaking-quest/#today-practice" },
   { id: "interactive", title: "互动页面", description: "把文章、知识和人物研究变成可探索页面。", url: "https://yonge6.github.io/zhaha2/" },
   { id: "booth", title: "展会方案", description: "传统设计稿变成可访问、可协作、可持续维护的线上项目资产。", url: "https://yonge6.github.io/OneLaser/august-trade-show-booth/" },
