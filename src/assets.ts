@@ -7,7 +7,7 @@ export const afterAsset = "/demo/after.webp";
 
 export const casePreviewAssets: Record<string, string> = {
   websites: "/case-previews/elian.png",
-  games: "/case-previews/catch-game.webp",
+  games: "/case-previews/xiazi-echo-realm-showcase.png",
   english: "/case-previews/english-speaking-quest.webp",
   ads: "/case-previews/asset-sop.webp",
   booth: "/case-previews/onelaser-booth.webp",
